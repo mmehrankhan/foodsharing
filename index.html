@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>food sharing app</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+
+	<style>
+		/* Global Styles */
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f0f0f0;
+		}
+		
+		/* Container Styles */
+		.container {
+			max-width: 400px;
+			margin: 40px auto;
+			padding: 20px;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+		}
+		
+		/* Form Styles */
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+		
+		label {
+			margin-bottom: 10px;
+		}
+		
+		input[type="text"], input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		
+		input[type="text"]:focus, input[type="password"]:focus {
+			border-color: #aaa;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		/* Button Styles */
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		button[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		
+		/* Responsive Styles */
+		@media (max-width: 768px) {
+			.container {
+				width: 90%;
+				margin: 20px auto;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.container {
+				width: 100%;
+				margin: 10px auto;
+			}
+			form {
+				padding: 10px;
+			}
+			label {
+				margin-bottom: 5px;
+			}
+			input[type="text"], input[type="password"] {
+				margin-bottom: 10px;
+			}
+		}
+		
+		/* Signin and Signup Tabs */
+		.tabs {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+		
+		.tabs a {
+			color: #333;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		
+		.tabs a.active {
+			color: #4CAF50;
+			border-bottom: 2px solid #4CAF50;
+		}
+		
+		/* Signin and Signup Forms */
+		.signin-form,.signup-form {
+			display: none;
+		}
+		
+		.signin-form.active,.signup-form.active {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+        
+        <div id="auth_container">
+		<form class="signin-form active">
+			<h2>Signin</h2><br>
+			<label for="email">Email</label>
+			<input type="text" id="signin_email" placeholder="email">
+			<label for="password">Password</label>
+			<input type="password" id="signin_password" placeholder="password">
+			<button type="submit" id="signin_btn">Signin</button><br><br>
+			<p>Create new account? <a href="#" id="signup-link">Signup</a></p>
+		</form>
+		<form class="signup-form">
+			<h2>Signup</h2><br>
+			<label for="email">Email</label>
+			<input type="text" id="signup_email" placeholder="email">
+			<label for="password">Password</label>
+			<input type="password" id="signup_password" placeholder="min 6-digits">
+			<button type="submit" id="signup_btn">Signup</button><br><br>
+			<p>Already have an account? <a href="#" id="signin-link">Signin</a></p>
+        </form>
+        </div>
+    </div> 
+    
+    <div id="user_container">
+        <div><h1 id="user_email" style="text-decoration-color: white;"></h1>
+          <h3 >Wellcome to your  account.</h3>
+        </div>
+        <div>
+            <br><br>
+          <button id="logout_btn" type="submit">Logout</button>
+
+        </div>
+        
+		
+    </div>
+
+
+<!-- 
+	<section class="text-gray-600 body-font">
+		<div class="container px-5 py-24 mx-auto">
+		  <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+			<div class="relative flex-grow w-full">
+			  <label for="image" class="leading-7 text-sm text-gray-600">Image</label>
+			  <input type="file" id="car_img"  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-transparent focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+			</div>
+			<div class="relative flex-grow w-full">
+				<label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+				<input type="text" id="item_name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-transparent focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+			  </div>
+			  <div class="relative flex-grow w-full">
+				<label for="price" class="leading-7 text-sm text-gray-600">Price</label>
+				<input type="number" id="item_price" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-transparent focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+			  </div>
+			<button id="save_file" class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">ADD</button>
+		  </div>
+		</div>
+	  </section>
+	<!-- <input type="file" name="" id="car_img" />
+    <button id="save_file" >Save</button> -->
+
+	<!-- <div
+	style="display: flex;
+	flex-wrap: wrap;
+	justify-content: center; align-items: center"
+	id="container"
+  >
+  <section class="text-gray-600 body-font">
+	<div class="container px-5 py-24 mx-auto">
+	
+	  <div class="flex flex-wrap -m-4">
+		<div class="xl:w-1/4 md:w-1/2 p-4">
+		  <div class="bg-gray-100 p-6 rounded-lg">
+			<img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+			<h2 class="text-lg text-gray-900 font-medium title-font mb-4"></h2>
+			<h3 class="tracking-widest text-green-500 text-xs font-medium title-font"></h3>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+  </div> --> -->
+
+	<script src="app.js" type="module"></script>
+</body>
+</html>
